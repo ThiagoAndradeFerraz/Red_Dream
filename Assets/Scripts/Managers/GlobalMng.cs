@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+
 public class GlobalMng : MonoBehaviour
 {
     // ***************
@@ -34,4 +37,9 @@ public class GlobalMng : MonoBehaviour
     {
         
     }
+
+
+   
 }
+
+

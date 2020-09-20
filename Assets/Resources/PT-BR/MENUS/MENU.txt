@@ -1,0 +1,3 @@
+CONTINUE_ID|Continuar
+SETTINGS_ID|Configurações
+QUIT_ID|Sair do jogo
