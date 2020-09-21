@@ -44,14 +44,8 @@ public class LangMng : MonoBehaviour
     void Start()
     {
         SetLanguage(Language.PTBR);
-        FillDictionaryMenus();
-        Debug.Log("teste: " + GetValueMenu("QUIT_ID"));
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        LoadDictionaryMenuList();
+        //Debug.Log("teste: " + GetValueMenu("QUIT_ID"));
     }
 
     // Handle language selection ********
@@ -78,8 +72,8 @@ public class LangMng : MonoBehaviour
 
     //*********************************
 
-    // Load menu dicionary
-    public void FillDictionaryMenus() 
+    // Load menu dictionary
+    public void LoadDictionaryMenuList() 
     {
         string path = folderLang + "/MENUS/MENU";
         txtFile = Resources.Load<TextAsset>(path);
@@ -102,7 +96,6 @@ public class LangMng : MonoBehaviour
         if (!dictionaryMenus.Exists(x => x.id == key))
         {
             Debug.Log("Invalid Key! " + key);
-            
         }
         else
         {

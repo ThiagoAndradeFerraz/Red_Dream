@@ -56,12 +56,12 @@ public class StateMng : MonoBehaviour
         {
             prevState = stateNow;
             stateNow = GameState.PAUSED;
-            UImanager.Instance.SetPause1UI(true);
+            UImanager.Instance.ShowPauseUI1(true);
         }
         else
         {
             stateNow = prevState;
-            UImanager.Instance.SetPause1UI(false);
+            UImanager.Instance.ShowPauseUI1(false);
         }
     }
 

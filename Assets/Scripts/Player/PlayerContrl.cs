@@ -16,9 +16,10 @@ public class PlayerContrl : MonoBehaviour
     
     private float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
-    public Transform cam; 
+    public Transform cam;
 
-    
+    public static PlayerContrl Instance { get; private set; }
+
     // Start is called before the first frame update
     void Start()
     {
