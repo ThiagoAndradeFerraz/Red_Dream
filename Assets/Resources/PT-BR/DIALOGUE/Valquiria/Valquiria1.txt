@@ -1,2 +1,2 @@
-VALQUIRIA|Hi beauty!|L
-PLAYER|Who... who the fuck are you!?|R
+VALQUIRIA|Hi beauty!|NEUTRAL|NEUTRAL
+PLAYER|Who... who the fuck are you!?|NEUTRAL|NEUTRAL

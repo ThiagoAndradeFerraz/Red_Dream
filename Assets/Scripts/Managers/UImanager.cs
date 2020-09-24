@@ -18,6 +18,8 @@ public class UImanager : MonoBehaviour
     // UI MANAGER
     // ***********
 
+    private UIState currentUIstate;
+
     // Pause 1
     private GameObject bcgImg;     // Pause background image
     private GameObject bcgImgIntr; // Interaction background image
@@ -35,9 +37,9 @@ public class UImanager : MonoBehaviour
     [SerializeField] private Transform[] btnIntrPanel1 = new Transform[3];    // Interaction Panel 1 buttons 
     [SerializeField] private Transform[] txtBtnIntrPanel1 = new Transform[3]; // Interaction Panel 1 button texts 
 
-    [SerializeField] private Transform talkPanel, imgTalkL, imgTalkR, txtNpcNameL, txtNpcNameR, txtTalk; // Conversation game objects
+    [SerializeField] public Transform talkPanel, imgTalkL, imgTalkR, txtNpcNameL, txtNpcNameR, txtTalk; // Conversation game objects
 
-
+    //private DialogueManager dialogueMachine = new DialogueManager();
 
 
     public static UImanager Instance { get; private set; }
@@ -66,6 +68,11 @@ public class UImanager : MonoBehaviour
 
     public void ShowUI(UIState uiState, bool command)
     {
+        if(command)
+        {
+            currentUIstate = uiState;
+        }
+
         switch (uiState)
         {
             case UIState.PAUSE1: // Screen 1 of Pause Menu
@@ -82,14 +89,26 @@ public class UImanager : MonoBehaviour
                 intrPanel1.GetComponent<Image>().enabled = command;
                 ShowPanelAndBTN(ref btnIntrPanel1, ref txtBtnIntrPanel1, command);
                 ShowUI(UIState.NOTIFICATION, false); // Hiding notification if activated
+                
+
                 break;
 
             case UIState.TALK:
                 ShowUI(UIState.INTERACTMENU1, false); // Hiding previous menu
                 ShowDialogueUI(command);
+                if (command) { DialogueManager.Instance.StartDialogue(); }
+                //dialogueMachine.StartDialogue(); // PAY ATTENTION HERE!!!!
                 break;
 
         }
+
+        
+    }
+
+    private bool CheckUIstate(UIState state)
+    {
+        bool result = (currentUIstate == state);
+        return result;
     }
 
     private void ShowPanelAndBTN(ref Transform[] btnArray, ref Transform[] txtArray, bool command)

@@ -65,9 +65,11 @@
     <Compile Include="Assets\Scripts\Managers\GlobalMng.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerContrl.cs" />
     <Compile Include="Assets\Scripts\Managers\LangMng.cs" />
+    <Compile Include="Assets\Scripts\Generics\DialogueEntry.cs" />
+    <Compile Include="Assets\Scripts\Managers\DialogueManager.cs" />
   </ItemGroup>
   <ItemGroup>
-     <None Include="Assets\Resources\PT-BR\DIALOGUE\Valquiria\VALQUIRIA1.txt" />
+     <None Include="Assets\Resources\PT-BR\DIALOGUE\Valquiria\Valquiria1.txt" />
      <None Include="Assets\Resources\PT-BR\MENUS\MENU.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
