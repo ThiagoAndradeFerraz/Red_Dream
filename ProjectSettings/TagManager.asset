@@ -7,6 +7,9 @@ TagManager:
   - bcgImg
   - pausePanel1
   - notificationPanel
+  - optionsPanel
+  - bcgImgIntr
+  - talkPanel
   layers:
   - Default
   - TransparentFX

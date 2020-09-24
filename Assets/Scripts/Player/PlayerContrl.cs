@@ -30,9 +30,14 @@ public class PlayerContrl : MonoBehaviour
     void Update()
     {
         // Checking if the game is paused or not
-        if(StateMng.Instance.GetState() != GameState.PAUSED)
+        if(StateMng.Instance.GetState() == GameState.EXPLORATION)
         {
             Movement();
+            MouseMovement(true);
+        }
+        else
+        {
+            MouseMovement(false);
         }
 
         Pause();
@@ -83,10 +88,14 @@ public class PlayerContrl : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             StateMng.Instance.SetPause();
+        }
+    }
 
-            // Stopping the mouse movement while paused
-            bool command = (StateMng.Instance.GetState() == GameState.PAUSED);
-            cam.GetComponent<CinemachineBrain>().enabled = !command;
+    private void MouseMovement(bool command)
+    {
+        if (cam.GetComponent<CinemachineBrain>().enabled != command)
+        {
+            cam.GetComponent<CinemachineBrain>().enabled = command;
         }
     }
 }

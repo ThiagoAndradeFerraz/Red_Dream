@@ -4,7 +4,7 @@ using UnityEngine;
 
 public enum GameState
 {
-    PAUSED, EXPLORATION, COMBAT, INTERACTION
+    PAUSED, EXPLORATION, COMBAT, INTERACTION1
 }
 
 public class StateMng : MonoBehaviour
@@ -17,6 +17,13 @@ public class StateMng : MonoBehaviour
     private GameState stateNow;
     [SerializeField]
     private GameState prevState;
+
+
+    // used only in dialogue system ****
+    public string npcName;
+    public int conversationNumber;
+    // *********************************
+
 
     public static StateMng Instance { get; private set; }
 
@@ -52,22 +59,16 @@ public class StateMng : MonoBehaviour
 
     public void SetPause()
     {
-        if(stateNow != GameState.PAUSED)
-        {
-            prevState = stateNow;
-            stateNow = GameState.PAUSED;
-            UImanager.Instance.ShowPauseUI1(true);
-        }
-        else
-        {
-            stateNow = prevState;
-            UImanager.Instance.ShowPauseUI1(false);
-        }
+        SwitchState(GameState.PAUSED);
     }
 
-    public void SetInteract()
+    public void SetInteract1(string name, int number)
     {
+        // Name and Number -> Used to load the right dialogue file acording to the time and NPC
 
+        npcName = name;
+        conversationNumber = number;
+        SwitchState(GameState.INTERACTION1);
     }
 
     public void SetCombat()
@@ -80,4 +81,37 @@ public class StateMng : MonoBehaviour
 
     }
 
+
+    private void SwitchState(GameState state)
+    {
+        if (stateNow != state)
+        {
+            prevState = stateNow;
+            stateNow = state;
+            UImanager.Instance.ShowUI(SelectUIState(state), true);
+        }
+        else
+        {
+            stateNow = prevState;
+            UImanager.Instance.ShowUI(SelectUIState(state), false);
+        }
+    }
+
+    private UIState SelectUIState(GameState state)
+    {
+        UIState uiState = UIState.PAUSE1; // DEFAULT VALUE, PAY ATTENTION TO THIS!!!!
+
+        switch (state)
+        {
+            case GameState.INTERACTION1:
+                uiState = UIState.INTERACTMENU1;
+                break;
+
+            case GameState.PAUSED:
+                uiState = UIState.PAUSE1;
+                break;
+        }
+
+        return uiState;
+    }
 }

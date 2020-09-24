@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class NPC1 : Interactive
 {
-    
+    [SerializeField] private string npcName;   // NPC Name...
+    [SerializeField] private int convNumb = 1; // Conversation number...
+
+
     // Start is called before the first frame update
     /*void Start()
     {
@@ -19,6 +22,7 @@ public class NPC1 : Interactive
 
     protected override void Interact()
     {
-        Debug.Log("interagiu!");
+        //Debug.Log("interagiu!");
+        StateMng.Instance.SetInteract1(npcName, convNumb);
     }
 }

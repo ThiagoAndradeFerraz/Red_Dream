@@ -3,3 +3,6 @@ SETTINGS_ID|Configurações
 QUIT_ID|Sair do jogo
 NAME_ID|Nome
 INTERACT_ID|Interagir
+TALK_ID|Falar
+USE_INV_ID|Usar inventário
+LEAVE_ID|Sair
