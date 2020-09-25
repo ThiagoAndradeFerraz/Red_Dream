@@ -36,6 +36,7 @@ public class UImanager : MonoBehaviour
     private GameObject intrPanel1; // Interaction Panel 1
     [SerializeField] private Transform[] btnIntrPanel1 = new Transform[3];    // Interaction Panel 1 buttons 
     [SerializeField] private Transform[] txtBtnIntrPanel1 = new Transform[3]; // Interaction Panel 1 button texts 
+    private Transform imgNpc, txtNpcName;
 
     [SerializeField] public Transform talkPanel, imgTalkL, imgTalkR, txtNpcNameL, txtNpcNameR, txtTalk; // Conversation game objects
 
@@ -87,10 +88,17 @@ public class UImanager : MonoBehaviour
             case UIState.INTERACTMENU1: // Interaction Menu 1
                 bcgImgIntr.GetComponent<Image>().enabled = command;
                 intrPanel1.GetComponent<Image>().enabled = command;
+                imgNpc.GetComponent<Image>().enabled = command;
+                
+                if (command)
+                {
+                    imgNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(StateMng.Instance.npcName));
+                }
+                
+                txtNpcName.GetComponent<Text>().text = (command) ? StateMng.Instance.npcName : " ";
                 ShowPanelAndBTN(ref btnIntrPanel1, ref txtBtnIntrPanel1, command);
                 ShowUI(UIState.NOTIFICATION, false); // Hiding notification if activated
                 
-
                 break;
 
             case UIState.TALK:
@@ -105,10 +113,11 @@ public class UImanager : MonoBehaviour
         
     }
 
-    private bool CheckUIstate(UIState state)
+    private string GetImgPath(string charName)
     {
-        bool result = (currentUIstate == state);
-        return result;
+        // EXAMPLE: Arts/Characters/Cassandra/Cassandra_NEUTRAL
+        string path = "Arts/Characters/" + charName + "/" + charName + "_NEUTRAL";
+        return path;
     }
 
     private void ShowPanelAndBTN(ref Transform[] btnArray, ref Transform[] txtArray, bool command)
@@ -198,6 +207,15 @@ public class UImanager : MonoBehaviour
         
         btnIntrPanel1[2] = intrPanel1.GetComponent<Transform>().GetChild(2);          // Leave Btn
         txtBtnIntrPanel1[2] = btnIntrPanel1[2].GetComponent<Transform>().GetChild(0); // Leave Text
+
+        imgNpc = intrPanel1.GetComponent<Transform>().GetChild(3);     // NPC img portrait
+        txtNpcName = intrPanel1.GetComponent<Transform>().GetChild(4); // NPC text name
+
+        
+
+
+
+
         // ***********************
 
         // Dialogue elements *****

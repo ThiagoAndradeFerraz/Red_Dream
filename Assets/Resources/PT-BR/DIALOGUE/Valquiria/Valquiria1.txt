@@ -1,2 +1,2 @@
-VALQUIRIA|Hi beauty!|NEUTRAL|NEUTRAL
-PLAYER|Who... who the fuck are you!?|NEUTRAL|NEUTRAL
+Valquiria|Oi lindinha!|L|NEUTRAL|NEUTRAL|
+Cassandra|Quem... Quem é você?|R|NEUTRAL|NEUTRAL|

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    private string npcName;
+
     private TextAsset txtAssetFile;
     private string strFile;
     private List<DialogueEntry> listLinesDialogue = new List<DialogueEntry>();
@@ -49,7 +51,8 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log("loading file...");
 
         string langFolder = LangMng.Instance.getLanguageFolder();
-        string characterFolder = StateMng.Instance.npcName;
+        npcName = StateMng.Instance.npcName;
+        string characterFolder = npcName; 
         string characterFile = characterFolder + StateMng.Instance.conversationNumber;
         string path = langFolder + "/DIALOGUE/" + characterFolder + "/" + characterFile;
 
@@ -62,7 +65,8 @@ public class DialogueManager : MonoBehaviour
         for(int i = 0; i < lines.Length; i++)
         {
             string[] partsOfLine = lines[i].Split('|');
-            listLinesDialogue.Add(new DialogueEntry(partsOfLine[0], partsOfLine[1], partsOfLine[2], partsOfLine[3]));
+            listLinesDialogue.Add(new DialogueEntry(partsOfLine[0], partsOfLine[1], partsOfLine[2], partsOfLine[3], partsOfLine[4]));
+            //Debug.Log("[ARRAY] emotion npc: " + partsOfLine[3] + " emotion player: " + partsOfLine[4]);
             //Debug.Log(listLinesDialogue[i].line);
         }
     }
@@ -92,13 +96,53 @@ public class DialogueManager : MonoBehaviour
 
     private void ShowLine(int index)
     {
-        UImanager.Instance.txtNpcNameL.GetComponent<Text>().text = listLinesDialogue[index].name;
+        switch (listLinesDialogue[index].position)
+        {
+            case "R":
+                //UImanager.Instance.txtNpcNameR.GetComponent<Text>().text = listLinesDialogue[index].name;
+                UImanager.Instance.txtNpcNameR.GetComponent<Text>().text = "Cassandra"; // <-- PLAYER NAME HERE!!!
+                UImanager.Instance.txtNpcNameL.GetComponent<Text>().text = " ";
+                break;
+
+            case "L":
+                //UImanager.Instance.txtNpcNameL.GetComponent<Text>().text = listLinesDialogue[index].name;
+                UImanager.Instance.txtNpcNameL.GetComponent<Text>().text = npcName;
+                UImanager.Instance.txtNpcNameR.GetComponent<Text>().text = " ";
+                break;
+
+            default:
+                Debug.Log("INVALID POSITION IN DIALOGUE FILE IN LINE " + (index+1));
+                break;
+        }
+
         UImanager.Instance.txtTalk.GetComponent<Text>().text = listLinesDialogue[index].line;
 
+        LoadCharsImg(npcName, listLinesDialogue[index].emotionNPC);
+        LoadCharsImg("Cassandra", listLinesDialogue[index].emotionPlayer);
+        //LoadCharsImg("Cassandra", "NEUTRAL");
 
-
-        //talkPanel, imgTalkL, imgTalkR, txtNpcNameL, txtNpcNameR, txtTalk
     }
+
+    private void LoadCharsImg(string charName, string emotion)
+    {
+        string path = ImgPath(charName, emotion);
+        if (charName != "Cassandra") // Not the player...
+        {
+            UImanager.Instance.imgTalkL.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(path);
+        }
+        else
+        {
+            UImanager.Instance.imgTalkR.gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(path);
+        }
+    }
+
+    private string ImgPath(string charName, string emotion)
+    {
+        // EXAMPLE: Arts/Characters/Cassandra/Cassandra_NEUTRAL
+        string path = "Arts/Characters/" + charName + "/" + charName + "_" + emotion;
+        return path;
+    }
+
 
 
 }
