@@ -18,7 +18,7 @@ public class UImanager : MonoBehaviour
     // UI MANAGER
     // ***********
 
-    private UIState currentUIstate;
+    public UIState currentUIstate;
 
     // Pause 1
     private GameObject bcgImg;     // Pause background image
@@ -38,10 +38,13 @@ public class UImanager : MonoBehaviour
     [SerializeField] private Transform[] txtBtnIntrPanel1 = new Transform[3]; // Interaction Panel 1 button texts 
     private Transform imgNpc, txtNpcName;
 
+    // Talk 
     [SerializeField] public Transform talkPanel, imgTalkL, imgTalkR, txtNpcNameL, txtNpcNameR, txtTalk; // Conversation game objects
 
-    //private DialogueManager dialogueMachine = new DialogueManager();
-
+    // Inventory
+    private GameObject inventoryPanel;
+    private Transform txtInvHeader, txtInvNpcName, imgInvNpc, btnSelectItem, txtBtnSelect, panelItens;
+    [SerializeField] private Transform[] slotsInventory = new Transform[9];
 
     public static UImanager Instance { get; private set; }
 
@@ -81,9 +84,13 @@ public class UImanager : MonoBehaviour
                 ShowPanelAndBTN(ref pause1Buttons, ref pause1ButtonsTXT, command); // Showing the elements of this screen
                 break;
 
+            // **********************************************************************************************************************
+
             case UIState.NOTIFICATION: // Notification pop-up
                 ShowPanelAndTXT(ref notificationPanel, ref txtNotificationArray, command);
                 break;
+
+            // **********************************************************************************************************************
 
             case UIState.INTERACTMENU1: // Interaction Menu 1
                 bcgImgIntr.GetComponent<Image>().enabled = command;
@@ -101,6 +108,8 @@ public class UImanager : MonoBehaviour
                 
                 break;
 
+            // **********************************************************************************************************************
+
             case UIState.TALK:
                 ShowUI(UIState.INTERACTMENU1, false); // Hiding previous menu
                 ShowDialogueUI(command);
@@ -108,9 +117,44 @@ public class UImanager : MonoBehaviour
                 //dialogueMachine.StartDialogue(); // PAY ATTENTION HERE!!!!
                 break;
 
+            // **********************************************************************************************************************
+
+            case UIState.INVENTORYINTERACT:
+
+                // ---------------------------------------------------------------
+                // ATTENTION!
+                // THE BACK FUNCTION IS TREATED BY THE STATE MANAGER PAUSE METHOD!
+                // ---------------------------------------------------------------
+
+                ShowUI(UIState.INTERACTMENU1, false); // Hiding previous menu
+                ShowBackgroundImg(command);
+                // Selection button
+                btnSelectItem.gameObject.SetActive(command); // Button
+                btnSelectItem.GetChild(0).GetComponent<TxtObj>().ShowText(command); // Button text
+
+                txtInvHeader.GetComponent<TxtObj>().ShowText(command); // Header inventory
+                imgInvNpc.GetComponent<Image>().enabled = command; // Activate img
+                
+                if (command) // Only load image if the image is gonna be shown
+                {
+                    imgInvNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(StateMng.Instance.npcName)); // Loading the img
+                    txtInvNpcName.GetComponent<Text>().text = StateMng.Instance.npcName; // npc name text
+                }
+                else
+                {
+                    txtInvNpcName.GetComponent<Text>().text = " ";
+                }
+
+                panelItens.gameObject.SetActive(command);
+
+                // Load itens in slots...
+                //...
+                //...
+
+                break;
         }
 
-        
+
     }
 
     private string GetImgPath(string charName)
@@ -177,6 +221,7 @@ public class UImanager : MonoBehaviour
         intrPanel1 = GameObject.FindGameObjectWithTag("optionsPanel");
         bcgImgIntr = GameObject.FindGameObjectWithTag("bcgImgIntr");
         talkPanel = GameObject.FindGameObjectWithTag("talkPanel").GetComponent<Transform>();
+        inventoryPanel = GameObject.FindGameObjectWithTag("inventoryPanel");
     }
 
     // Used in Start method
@@ -210,12 +255,6 @@ public class UImanager : MonoBehaviour
 
         imgNpc = intrPanel1.GetComponent<Transform>().GetChild(3);     // NPC img portrait
         txtNpcName = intrPanel1.GetComponent<Transform>().GetChild(4); // NPC text name
-
-        
-
-
-
-
         // ***********************
 
         // Dialogue elements *****
@@ -226,8 +265,20 @@ public class UImanager : MonoBehaviour
         txtTalk = talkPanel.GetChild(4);
         // ***********************
 
+        // Inventory elements ****
+        txtInvHeader = inventoryPanel.GetComponent<Transform>().GetChild(0);
+        txtInvNpcName = inventoryPanel.GetComponent<Transform>().GetChild(1);
+        imgInvNpc = inventoryPanel.GetComponent<Transform>().GetChild(2);
+        btnSelectItem = inventoryPanel.GetComponent<Transform>().GetChild(3);
+        //txtBtnSelect = btnSelectItem.GetChild(0);
+        panelItens = inventoryPanel.GetComponent<Transform>().GetChild(4);
+        
+        for(int i = 0; i < 9; i++)
+        {
+            slotsInventory[i] = panelItens.GetChild(i);
+        }
 
-
+        // ***********************
 
     }
 

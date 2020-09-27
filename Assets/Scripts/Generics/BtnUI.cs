@@ -14,6 +14,7 @@ public class BtnUI : MonoBehaviour
     public void BtnInvClick()
     {
         //Debug.Log("using inventory...");
+        UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, true);
     }
 
     public void BtnLeaveClick()

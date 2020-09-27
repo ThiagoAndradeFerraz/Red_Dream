@@ -10,6 +10,7 @@ TagManager:
   - optionsPanel
   - bcgImgIntr
   - talkPanel
+  - inventoryPanel
   layers:
   - Default
   - TransparentFX

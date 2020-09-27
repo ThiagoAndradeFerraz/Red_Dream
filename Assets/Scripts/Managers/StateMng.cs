@@ -59,7 +59,31 @@ public class StateMng : MonoBehaviour
 
     public void SetPause()
     {
-        SwitchState(GameState.PAUSED);
+        /*
+        switch (UImanager.Instance.currentUIstate)
+        {
+            case UIState.INVENTORYINTERACT:
+                UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, false);
+                UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
+                break;
+
+            case UIState.INVENTORYINTERACT
+        }
+        */
+
+
+        if(UImanager.Instance.currentUIstate == UIState.INVENTORYINTERACT)
+        {
+            // ESC IS THE BACK BUTTON IN SOME SITUATIONS
+            UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, false);
+            UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
+        }
+        else
+        {
+            SwitchState(GameState.PAUSED);
+        }
+
+
     }
 
     public void SetInteract1(string name, int number)

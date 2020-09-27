@@ -142,7 +142,4 @@ public class DialogueManager : MonoBehaviour
         string path = "Arts/Characters/" + charName + "/" + charName + "_" + emotion;
         return path;
     }
-
-
-
 }
