@@ -65,7 +65,16 @@ public class UImanager : MonoBehaviour
     void Start()
     {
         GetParentElements();
-        GetChildElements(); 
+        GetChildElements();
+
+        // ONLY FOR TESTING!
+        GlobalMng.Instance.AddItemInventory("sword");
+        GlobalMng.Instance.AddItemInventory("magazine");
+        GlobalMng.Instance.AddItemInventory("paper");
+
+
+
+
     }
 
     // ----------------------------------------------------
@@ -147,9 +156,23 @@ public class UImanager : MonoBehaviour
 
                 panelItens.gameObject.SetActive(command);
 
+
+                // LEMBRERETE! ESSE TRECHO SÓ PODE ROLAR QUANDO O COMMAND FOR TRUE!!!!
                 // Load itens in slots...
-                //...
-                //...
+                int listLength = GlobalMng.Instance.inventoryList.Count;
+                for(int i = 0; i < slotsInventory.Length; i++)
+                {
+                    if(i < listLength)
+                    {
+                        slotsInventory[i].GetComponent<InventorySlot>().LoadInfo(i);
+                    }
+                    else
+                    {
+                        slotsInventory[i].GetComponent<InventorySlot>().LetItEmpty();
+                    }
+                }
+
+                // slotsInventory
 
                 break;
         }

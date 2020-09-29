@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class GlobalMng : MonoBehaviour
 {
     // ***************
     // GLOBAL MANAGER
     // ***************
+
+    // Inventory
+    public List<InventoryEntry> inventoryList = new List<InventoryEntry>();
 
     public static GlobalMng Instance { get; private set; }
 
@@ -26,20 +26,16 @@ public class GlobalMng : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void AddItemInventory(string itemName)
     {
-        
+        inventoryList.Add(new InventoryEntry(itemName));
     }
 
-    // Update is called once per frame
-    void Update()
+    public void RemoveItemInventory(string idItem) // WILL REMOVE ALL ITENS WITH THE GIVEN ID!
     {
-        
+        inventoryList.RemoveAll(x => x.getId() == idItem);
     }
 
-
-   
 }
 
 
