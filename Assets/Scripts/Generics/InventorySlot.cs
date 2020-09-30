@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class InventorySlot : MonoBehaviour
 {
-    string id;
+    private string id;
     string imgName;
 
     public void LoadInfo(int index)
     {
         id = GlobalMng.Instance.inventoryList[index].getId();
+        Debug.Log(id);
         imgName = GlobalMng.Instance.inventoryList[index].getImgName();
 
         LoadImg(imgName);
@@ -33,4 +34,11 @@ public class InventorySlot : MonoBehaviour
         string path = "Arts/Itens/" + imgName;
         gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>(path);
     }
+
+    // Click method!
+    public void SlotClick()
+    {
+        Debug.Log(id);
+    }
+
 }

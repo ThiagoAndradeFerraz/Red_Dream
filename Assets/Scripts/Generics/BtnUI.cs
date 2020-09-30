@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BtnUI : MonoBehaviour
 {
-    
     public void BtnTalkClick()
     {
         UImanager.Instance.ShowUI(UIState.TALK, true);
