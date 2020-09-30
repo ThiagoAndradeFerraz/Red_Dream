@@ -8,3 +8,4 @@ USE_INV_ID|Usar inventário
 LEAVE_ID|Sair
 INVENTORY_ID|Inventário
 USE-ITEM_ID|Usar item
+CANCEL_SELC_ID|Cancelar seleção

@@ -11,7 +11,6 @@ public class InventorySlot : MonoBehaviour
     public void LoadInfo(int index)
     {
         id = GlobalMng.Instance.inventoryList[index].getId();
-        Debug.Log(id);
         imgName = GlobalMng.Instance.inventoryList[index].getImgName();
 
         LoadImg(imgName);
@@ -38,7 +37,23 @@ public class InventorySlot : MonoBehaviour
     // Click method!
     public void SlotClick()
     {
-        Debug.Log(id);
+        //Debug.Log(id);
+        HighlightSlot();
+        UImanager.Instance.LetSlotsClickable(false);
+        UImanager.Instance.LetConfirmBtnClickable(true);
+    }
+
+    // When clicked
+    private void HighlightSlot()
+    {
+        gameObject.GetComponent<Image>().color = Color.blue;
+    }
+
+
+
+    public string GetId()
+    {
+        return id;
     }
 
 }

@@ -43,7 +43,7 @@ public class UImanager : MonoBehaviour
 
     // Inventory
     private GameObject inventoryPanel;
-    private Transform txtInvHeader, txtInvNpcName, imgInvNpc, btnSelectItem, txtBtnSelect, panelItens;
+    private Transform txtInvHeader, txtInvNpcName, imgInvNpc, btnSelectItem, txtBtnSelect, panelItens, btnCancelSelection;
     [SerializeField] private Transform[] slotsInventory = new Transform[9];
 
     public static UImanager Instance { get; private set; }
@@ -172,13 +172,55 @@ public class UImanager : MonoBehaviour
                     }
                 }
 
-                // slotsInventory
+                btnCancelSelection.gameObject.SetActive(command);
+                btnCancelSelection.GetChild(0).GetComponent<TxtObj>().ShowText(command);
 
                 break;
         }
-
-
     }
+
+    // Inventory related methods -----------------------------------------------
+    
+    public void LetConfirmBtnClickable(bool command)
+    {
+        btnSelectItem.GetComponent<Button>().interactable = command;
+        btnCancelSelection.GetComponent<Button>().interactable = command;
+    }
+
+
+    public void LetSlotsClickable(bool command)
+    {
+        for (int i = 0; i < slotsInventory.Length; i++)
+        {
+            if (command)
+            {
+                if(slotsInventory[i].GetComponent<InventorySlot>().GetId() != " ")
+                {
+                    slotsInventory[i].GetComponent<Button>().interactable = command;
+
+                }
+            }
+            else
+            {
+                slotsInventory[i].GetComponent<Button>().interactable = command;
+            }
+
+            //slotsInventory[i].GetComponent<Button>().interactable = command;
+        }
+    }
+
+    public void ResetHighlightSlots()
+    {
+        for (int i = 0; i < slotsInventory.Length; i++)
+        {
+            slotsInventory[i].GetComponent<Image>().color = Color.white;
+        }
+    }
+    // -------------------------------------------------------------------------------
+
+
+
+
 
     private string GetImgPath(string charName)
     {
@@ -301,6 +343,7 @@ public class UImanager : MonoBehaviour
             slotsInventory[i] = panelItens.GetChild(i);
         }
 
+        btnCancelSelection = inventoryPanel.GetComponent<Transform>().GetChild(5);
         // ***********************
 
     }
