@@ -10,8 +10,8 @@ public class InventorySlot : MonoBehaviour
 
     public void LoadInfo(int index)
     {
-        id = GlobalMng.Instance.inventoryList[index].getId();
-        imgName = GlobalMng.Instance.inventoryList[index].getImgName();
+        id = InvAndNPCmng.Instance.inventoryList[index].getId();
+        imgName = InvAndNPCmng.Instance.inventoryList[index].getImgName();
 
         LoadImg(imgName);
         gameObject.GetComponent<Button>().interactable = true;

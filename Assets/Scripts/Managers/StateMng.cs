@@ -18,10 +18,10 @@ public class StateMng : MonoBehaviour
     [SerializeField]
     private GameState prevState;
 
-
+    /*
     // used only in dialogue system ****
     public string npcName;
-    public int conversationNumber;
+    public int conversationNumber; */
     // *********************************
 
 
@@ -86,15 +86,6 @@ public class StateMng : MonoBehaviour
 
     }
 
-    public void SetInteract1(string name, int number)
-    {
-        // Name and Number -> Used to load the right dialogue file acording to the time and NPC
-
-        npcName = name;
-        conversationNumber = number;
-        SwitchState(GameState.INTERACTION1);
-    }
-
     public void SetCombat()
     {
 
@@ -105,6 +96,15 @@ public class StateMng : MonoBehaviour
 
     }
 
+    public void SetInteract1(string name, string desc)
+    {
+        // Name and Number -> Used to load the right dialogue file acording to the time and NPC
+
+        InvAndNPCmng.Instance.npcName = name;
+        //InvAndNPCmng.Instance.conversationNumber = number;
+        InvAndNPCmng.Instance.descNextDialog = desc;
+        SwitchState(GameState.INTERACTION1);
+    }
 
     private void SwitchState(GameState state)
     {

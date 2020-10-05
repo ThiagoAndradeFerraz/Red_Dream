@@ -68,9 +68,9 @@ public class UImanager : MonoBehaviour
         GetChildElements();
 
         // ONLY FOR TESTING!
-        GlobalMng.Instance.AddItemInventory("sword");
-        GlobalMng.Instance.AddItemInventory("magazine");
-        GlobalMng.Instance.AddItemInventory("paper");
+        InvAndNPCmng.Instance.AddItemInventory("sword");
+        InvAndNPCmng.Instance.AddItemInventory("magazine");
+        InvAndNPCmng.Instance.AddItemInventory("paper");
 
 
 
@@ -108,10 +108,10 @@ public class UImanager : MonoBehaviour
                 
                 if (command)
                 {
-                    imgNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(StateMng.Instance.npcName));
+                    imgNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(InvAndNPCmng.Instance.npcName));
                 }
                 
-                txtNpcName.GetComponent<Text>().text = (command) ? StateMng.Instance.npcName : " ";
+                txtNpcName.GetComponent<Text>().text = (command) ? InvAndNPCmng.Instance.npcName : " ";
                 ShowPanelAndBTN(ref btnIntrPanel1, ref txtBtnIntrPanel1, command);
                 ShowUI(UIState.NOTIFICATION, false); // Hiding notification if activated
                 
@@ -120,6 +120,7 @@ public class UImanager : MonoBehaviour
             // **********************************************************************************************************************
 
             case UIState.TALK:
+                UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, false); // If is true
                 ShowUI(UIState.INTERACTMENU1, false); // Hiding previous menu
                 ShowDialogueUI(command);
                 if (command) { DialogueManager.Instance.StartDialogue(); }
@@ -146,8 +147,8 @@ public class UImanager : MonoBehaviour
                 
                 if (command) // Only load image if the image is gonna be shown
                 {
-                    imgInvNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(StateMng.Instance.npcName)); // Loading the img
-                    txtInvNpcName.GetComponent<Text>().text = StateMng.Instance.npcName; // npc name text
+                    imgInvNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(InvAndNPCmng.Instance.npcName)); // Loading the img
+                    txtInvNpcName.GetComponent<Text>().text = InvAndNPCmng.Instance.npcName; // npc name text
                 }
                 else
                 {
@@ -159,7 +160,7 @@ public class UImanager : MonoBehaviour
 
                 // LEMBRERETE! ESSE TRECHO SÓ PODE ROLAR QUANDO O COMMAND FOR TRUE!!!!
                 // Load itens in slots...
-                int listLength = GlobalMng.Instance.inventoryList.Count;
+                int listLength = InvAndNPCmng.Instance.inventoryList.Count;
                 for(int i = 0; i < slotsInventory.Length; i++)
                 {
                     if(i < listLength)

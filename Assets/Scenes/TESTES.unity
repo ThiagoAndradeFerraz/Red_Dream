@@ -201,6 +201,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 12246154}
   m_CullTransparentMesh: 0
+--- !u!1 &48047268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48047269}
+  m_Layer: 0
+  m_Name: NPCs Parent
+  m_TagString: npcParent
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48047269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48047268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 263.72916, y: 164.56706, z: 1.0423088}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1548188213}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &69515494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2695,9 +2726,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 775229071}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75a6636b3fbf5f04990bc378a6054711, type: 3}
+  m_Script: {fileID: 11500000, guid: bb3452559c37e4b4a86ceeb87f98256f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcGameObjList: []
+  npcName: 
+  descNextDialog: 
+  conversationNumber: 0
 --- !u!1 &809248071
 GameObject:
   m_ObjectHideFlags: 0
@@ -4110,8 +4145,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stateNow: 0
   prevState: 0
-  npcName: 
-  conversationNumber: 0
 --- !u!1 &1325946129
 GameObject:
   m_ObjectHideFlags: 0
@@ -4862,13 +4895,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1548188209}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -11.72, y: 7.368049, z: 17.01}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -275.44916, y: -157.19902, z: 15.967691}
   m_LocalScale: {x: 2.9787893, y: 13.576098, z: 2.6320138}
   m_Children:
   - {fileID: 1221460077}
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 48047269}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1548188214
 MonoBehaviour:
@@ -4879,12 +4912,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1548188209}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63b90a365a2311a40856c59ea06059aa, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d0e7aaaeb3242f4cbc5c0ba02e90d4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 11
   player: {fileID: 0}
   npcName: Valquiria
+  descNextDialog: START
   convNumb: 1
 --- !u!1 &1564309480
 GameObject:
@@ -6168,7 +6202,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951919867}
-  m_LocalRotation: {x: -0.021049192, y: -0.12201175, z: -0.0025881724, w: 0.99230206}
+  m_LocalRotation: {x: -0.02104919, y: -0.12201173, z: -0.0025881713, w: 0.9923021}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

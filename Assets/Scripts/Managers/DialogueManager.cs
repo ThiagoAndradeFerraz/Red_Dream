@@ -51,9 +51,10 @@ public class DialogueManager : MonoBehaviour
         //Debug.Log("loading file...");
 
         string langFolder = LangMng.Instance.getLanguageFolder();
-        npcName = StateMng.Instance.npcName;
-        string characterFolder = npcName; 
-        string characterFile = characterFolder + StateMng.Instance.conversationNumber;
+        npcName = InvAndNPCmng.Instance.npcName;
+        string characterFolder = npcName;
+        //string characterFile = characterFolder + InvAndNPCmng.Instance.conversationNumber;
+        string characterFile = characterFolder + "_" + InvAndNPCmng.Instance.descNextDialog;
         string path = langFolder + "/DIALOGUE/" + characterFolder + "/" + characterFile;
 
         txtAssetFile = Resources.Load<TextAsset>(path);
@@ -86,6 +87,8 @@ public class DialogueManager : MonoBehaviour
                 //Debug.Log("acabou, reiniciando o contador...");
                 
                 UImanager.Instance.ShowUI(UIState.TALK, false); // For some misterious reason, I can only deactivate the talk UI here
+                
+                // PUT A IF-ELSE HERE, CHECKING IF IS DEAD OR ALIVE! IF DEAD, GET OUT OF MENU, IF ALIVE, GO BACK TO INTERACT MENU
                 UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
 
                 

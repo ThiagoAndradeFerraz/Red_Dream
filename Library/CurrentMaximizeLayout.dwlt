@@ -23,10 +23,10 @@ MonoBehaviour:
     y: 30
     width: 1366
     height: 635
-  m_MinSize: {x: 911, y: 442}
-  m_MaxSize: {x: 22006, y: 10021}
+  m_MinSize: {x: 909, y: 421}
+  m_MaxSize: {x: 22004, y: 10000}
   vertical: 0
-  controlID: 113
+  controlID: 3241
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -137,10 +137,10 @@ MonoBehaviour:
     y: 0
     width: 530
     height: 635
-  m_MinSize: {x: 201, y: 442}
-  m_MaxSize: {x: 4001, y: 8042}
+  m_MinSize: {x: 201, y: 421}
+  m_MaxSize: {x: 4001, y: 8021}
   vertical: 1
-  controlID: 87
+  controlID: 3217
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -204,9 +204,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 263.72916, y: 164.56706, z: 1.0423088}
+    m_Target: {x: 7.6413345, y: 4.5946655, z: 39.685158}
     speed: 2
-    m_Value: {x: 263.72916, y: 164.56706, z: 1.0423088}
+    m_Value: {x: 7.6413345, y: 4.5946655, z: 39.685158}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -235,17 +235,17 @@ MonoBehaviour:
       m_Size: {x: 1, y: 1}
     yGrid:
       m_Fade:
-        m_Target: 0
+        m_Target: 1
         speed: 2
-        m_Value: 0
+        m_Value: 1
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
     zGrid:
       m_Fade:
-        m_Target: 1
+        m_Target: 0
         speed: 2
-        m_Value: 1
+        m_Value: 0
       m_Color: {r: 0.5, g: 0.5, b: 0.5, a: 0.4}
       m_Pivot: {x: 0, y: 0, z: 0}
       m_Size: {x: 1, y: 1}
@@ -253,13 +253,13 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0, y: 0, z: 0, w: 1}
+    m_Target: {x: 0.33898765, y: 0.36748376, z: -0.14592618, w: 0.8536678}
     speed: 2
-    m_Value: {x: 0, y: 0, z: 0, w: 1}
+    m_Value: {x: 0.33898765, y: 0.36748376, z: -0.14592618, w: 0.8536678}
   m_Size:
-    m_Target: 173.52599
+    m_Target: 30.777184
     speed: 2
-    m_Value: 173.52599
+    m_Value: 30.777184
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -364,8 +364,8 @@ MonoBehaviour:
     y: 326
     width: 530
     height: 309
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 2}
   m_Panes:
   - {fileID: 2}
@@ -427,7 +427,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 60fbffff
+      m_ExpandedIDs: 60fbffff38380000e8390000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -470,8 +470,8 @@ MonoBehaviour:
     y: 0
     width: 263
     height: 635
-  m_MinSize: {x: 230, y: 250}
-  m_MaxSize: {x: 10000, y: 10000}
+  m_MinSize: {x: 232, y: 271}
+  m_MaxSize: {x: 10002, y: 10021}
   m_ActualView: {fileID: 11}
   m_Panes:
   - {fileID: 11}
@@ -515,21 +515,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Resources/PT-BR/MENUS
+    - Assets/Resources/PT-BR/DIALOGUE/Valquiria
     m_Globs: []
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Resources/PT-BR/MENUS
+  - Assets/Resources/PT-BR/DIALOGUE/Valquiria
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Users\thiag\OneDrive\Documentos\RED_DREAM\RED DREAM
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 063b0000
-    m_LastClickedID: 15110
-    m_ExpandedIDs: 00000000dc3a0000de3a0000e03a0000e23a0000e43a0000e63a0000f63a000000ca9a3b
+    m_SelectedIDs: 8e540000
+    m_LastClickedID: 21646
+    m_ExpandedIDs: 00000000e63a0000e83a0000ea3a0000ec3a0000ee3a0000f03a0000fa3a00008c54000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -557,7 +557,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000dc3a0000de3a0000e03a0000e23a0000e43a0000e63a0000
+    m_ExpandedIDs: 00000000e63a0000e83a0000ea3a0000ec3a0000ee3a0000f03a000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -582,8 +582,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
+    m_SelectedInstanceIDs: 543b0000
+    m_LastClickedInstanceID: 15188
     m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: 
     m_RenameOverlay:
@@ -632,8 +632,8 @@ MonoBehaviour:
     y: 0
     width: 311
     height: 635
-  m_MinSize: {x: 275, y: 50}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 13}
   m_Panes:
   - {fileID: 13}
@@ -670,7 +670,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1
+  m_LastInspectedObjectInstanceID: 15188
   m_LastVerticalScrollValue: 0
   m_AssetGUID: 
   m_InstanceID: 0
