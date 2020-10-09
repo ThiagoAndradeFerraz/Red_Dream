@@ -48,7 +48,7 @@ public abstract class Interactive : MonoBehaviour
     private void ShowNotification(bool command)
     {
         //UImanager.Instance.ShowNotificationUI(command);
-        UImanager.Instance.ShowUI(UIState.NOTIFICATION, command);
+        //UImanager.Instance.ShowUI(UIState.NOTIFICATION, command);
     }
 
     private void CheckForInput()

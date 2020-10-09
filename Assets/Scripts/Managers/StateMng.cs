@@ -4,7 +4,11 @@ using UnityEngine;
 
 public enum GameState
 {
-    PAUSED, EXPLORATION, COMBAT, INTERACTION1
+    PAUSED, 
+    EXPLORATION, 
+    INTERACTION1,
+    TALK, 
+    INVENTORY
 }
 
 public class StateMng : MonoBehaviour
@@ -13,17 +17,10 @@ public class StateMng : MonoBehaviour
     // STATE MANAGER
     // **************
 
-    [SerializeField]
-    private GameState stateNow;
-    [SerializeField]
+    public GameState stateNow;
     private GameState prevState;
 
-    /*
-    // used only in dialogue system ****
-    public string npcName;
-    public int conversationNumber; */
-    // *********************************
-
+    private bool isPaused = false;
 
     public static StateMng Instance { get; private set; }
 
@@ -57,44 +54,73 @@ public class StateMng : MonoBehaviour
         return stateNow;
     }
 
-    public void SetPause()
+    public void GoPauseState()
     {
-        /*
-        switch (UImanager.Instance.currentUIstate)
-        {
-            case UIState.INVENTORYINTERACT:
-                UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, false);
-                UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
-                break;
+        stateNow = GameState.PAUSED;
+        isPaused = !isPaused;
+        UImanager.Instance.ChangeUI(stateNow, isPaused);
 
-            case UIState.INVENTORYINTERACT
+        if (!isPaused)
+        {
+            stateNow = GameState.EXPLORATION;
         }
-        */
+    }
+
+    public void GoIntr1State(string name, string desc)
+    {
+        // Getting NPC info
+        InvAndNPCmng.Instance.npcName = name;        // Name of NPC
+        InvAndNPCmng.Instance.descNextDialog = desc; // Description of dialogue to be played
+        //InvAndNPCmng.Instance.conversationNumber = number;
+
+        TurnOffCurrentState();
+
+        stateNow = GameState.INTERACTION1;
+        UImanager.Instance.ChangeUI(stateNow, true);
+    }
+
+    public void GoTalkState()
+    {
+        TurnOffCurrentState();
+        stateNow = GameState.TALK;
+        UImanager.Instance.ChangeUI(stateNow, true);
+    }
+
+    public void GoInventory()
+    {
+        TurnOffCurrentState();
+        stateNow = GameState.INVENTORY;
+        UImanager.Instance.ChangeUI(stateNow, true);
+    }
+
+    private void TurnOffCurrentState()
+    {
+        prevState = stateNow;
+        UImanager.Instance.ChangeUI(prevState, false);
+    }
 
 
-        if(UImanager.Instance.currentUIstate == UIState.INVENTORYINTERACT)
+    /*
+    private void SwitchState(GameState state)
+    {
+        if (stateNow != state)
         {
-            // ESC IS THE BACK BUTTON IN SOME SITUATIONS
-            UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, false);
-            UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
+            prevState = stateNow;
+            stateNow = state;
+            UImanager.Instance.ChangeUI(prevState, false);
+            UImanager.Instance.ChangeUI(state, true);
+            //UImanager.Instance.ShowUI(SelectUIState(state), true);
         }
         else
         {
-            SwitchState(GameState.PAUSED);
+            stateNow = prevState;
+            UImanager.Instance.ChangeUI(state, false);
+            //UImanager.Instance.ShowUI(SelectUIState(state), false);
         }
-
-
     }
+    */
 
-    public void SetCombat()
-    {
-
-    }
-
-    public void SetExploration()
-    {
-
-    }
+    /*
 
     public void SetInteract1(string name, string desc)
     {
@@ -138,4 +164,6 @@ public class StateMng : MonoBehaviour
 
         return uiState;
     }
+
+    */
 }

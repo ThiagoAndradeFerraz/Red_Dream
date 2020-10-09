@@ -8,13 +8,6 @@ public class BtnClickManager : MonoBehaviour
     // BTN CLICK MANAGER: Take care of the click methods of some buttons
     // *************************************************************************************
 
-
-
-
-
-
-
-
     // SINGLETON ***************************************************************************
     public static BtnClickManager Instance { get; private set; }
 
@@ -35,21 +28,24 @@ public class BtnClickManager : MonoBehaviour
     // FIRST INTERACTION MENU WITH NPC *****************************************************
     public void BtnTalkClick()
     {
-        UImanager.Instance.ShowUI(UIState.TALK, true);
-        //Debug.Log("talking...");
+        StateMng.Instance.GoTalkState();
     }
 
     public void BtnInvClick()
     {
         //Debug.Log("using inventory...");
-        UImanager.Instance.ShowUI(UIState.INVENTORYINTERACT, true);
+        StateMng.Instance.GoInventory();
     }
 
     public void BtnLeaveClick()
     {
         //Debug.Log("leaving...");
-        StateMng.Instance.SetInteract1(" ", " "); // Dummy values
+        //StateMng.Instance.SetInteract1(" ", " "); // Dummy values
         //UImanager.Instance.ShowUI(UIState.INTERACTMENU1, false);
+
+        StateMng.Instance.stateNow = GameState.EXPLORATION;
+        UImanager.Instance.ChangeUI(GameState.INTERACTION1, false);
+
     }
     // *************************************************************************************
 

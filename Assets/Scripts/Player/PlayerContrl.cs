@@ -13,7 +13,8 @@ public class PlayerContrl : MonoBehaviour
     
     [SerializeField]
     private float speed = 50f;
-    
+    private float jumpForce = 80f;
+
     private float turnSmoothTime = 0.1f;
     float turnSmoothVelocity;
     public Transform cam;
@@ -32,6 +33,7 @@ public class PlayerContrl : MonoBehaviour
         // Checking if the game is paused or not
         if(StateMng.Instance.GetState() == GameState.EXPLORATION)
         {
+            // Movement
             Movement();
             MouseMovement(true);
         }
@@ -40,7 +42,13 @@ public class PlayerContrl : MonoBehaviour
             MouseMovement(false);
         }
 
-        Pause();
+        PressEsc();
+
+        /*
+        if (UImanager.Instance.currentUIstate != UIState.INTERACTMENU1 || UImanager.Instance.currentUIstate != UIState.TALK)
+        {
+            PressEsc();
+        }*/
     }
 
     // -------------------------
@@ -83,11 +91,28 @@ public class PlayerContrl : MonoBehaviour
     }
     // -------------------------
 
-    private void Pause()
+    private void PressEsc()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            StateMng.Instance.SetPause();
+            if(StateMng.Instance.GetState() == GameState.EXPLORATION || StateMng.Instance.GetState() == GameState.PAUSED) // Pause operation
+            {
+                StateMng.Instance.GoPauseState();
+            }
+            else // Other operations
+            {
+                switch (StateMng.Instance.stateNow)
+                {
+                    case GameState.INTERACTION1:
+                        StateMng.Instance.stateNow = GameState.EXPLORATION;
+                        UImanager.Instance.ChangeUI(GameState.INTERACTION1, false);
+                        break;
+
+                    case GameState.INVENTORY:
+                        StateMng.Instance.GoIntr1State(InvAndNPCmng.Instance.npcName, InvAndNPCmng.Instance.descNextDialog);
+                        break;
+                }
+            }
         }
     }
 

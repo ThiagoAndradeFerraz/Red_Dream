@@ -17,13 +17,13 @@ public class Valquiria : NPC1, INpc
     public void ReceiveObj(string idObj)
     {
 
-        UImanager.Instance.ShowUI(UIState.TALK, true);
+        //UImanager.Instance.ShowUI(UIState.TALK, true);
         Debug.Log("recebeu: " + idObj);
     }
 
     protected override void Interact()
     {
-        StateMng.Instance.SetInteract1(npcName, descNextDialog);
+        StateMng.Instance.GoIntr1State(npcName, descNextDialog);
     }
 
     

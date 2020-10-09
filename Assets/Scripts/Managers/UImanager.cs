@@ -33,7 +33,8 @@ public class UImanager : MonoBehaviour
     private Transform[] txtNotificationArray = new Transform[2]; // Notification texts
 
     // Interaction panel 1
-    private GameObject intrPanel1; // Interaction Panel 1
+    private GameObject intr1Parent; // Interaction Panel 1
+    private Transform intr1Panel;
     [SerializeField] private Transform[] btnIntrPanel1 = new Transform[3];    // Interaction Panel 1 buttons 
     [SerializeField] private Transform[] txtBtnIntrPanel1 = new Transform[3]; // Interaction Panel 1 button texts 
     private Transform imgNpc, txtNpcName;
@@ -71,14 +72,119 @@ public class UImanager : MonoBehaviour
         InvAndNPCmng.Instance.AddItemInventory("sword");
         InvAndNPCmng.Instance.AddItemInventory("magazine");
         InvAndNPCmng.Instance.AddItemInventory("paper");
-
-
-
-
     }
 
     // ----------------------------------------------------
 
+    public void ChangeUI(GameState state, bool status)
+    {
+
+        Debug.Log(state);
+        switch (state)
+        {
+            case GameState.PAUSED:
+                PauseUI(status);
+                break;
+
+            case GameState.INTERACTION1:
+                Intr1UI(status);
+                break;
+
+            case GameState.TALK:
+                TalkUI(status);
+                break;
+
+            case GameState.INVENTORY:
+                InventoryUI(status);
+                break;
+
+            default:
+                // Doing nothing
+                break;
+        }
+    }
+
+    private void PauseUI(bool status)
+    {
+        ShowBackgroundImg(status);
+        ShowPanelAndBTN(ref pause1Buttons, ref pause1ButtonsTXT, status);
+    }
+
+    private void Intr1UI(bool status)
+    {
+        bcgImgIntr.GetComponent<Image>().enabled = status;
+        intr1Panel.gameObject.SetActive(status);
+        
+        //intr1Parent.GetComponent<Image>().enabled = status;
+        //imgNpc.GetComponent<Image>().enabled = status;
+
+        if (status)
+        {
+            imgNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(InvAndNPCmng.Instance.npcName));
+        }
+
+        txtNpcName.gameObject.SetActive(status);
+        txtNpcName.GetComponent<Text>().text = (status) ? InvAndNPCmng.Instance.npcName : " ";
+        ShowPanelAndBTN(ref btnIntrPanel1, ref txtBtnIntrPanel1, status);
+        //ShowUI(UIState.NOTIFICATION, false); // Hiding notification if activated
+    }
+
+    private void TalkUI(bool status)
+    {
+        ShowDialogueUI(status);
+        if (status) { DialogueManager.Instance.StartDialogue(); }
+        //dialogueMachine.StartDialogue(); // PAY ATTENTION HERE!!!!
+    }
+
+    private void InventoryUI(bool status)
+    {
+        ShowBackgroundImg(status);
+
+        // Selection button
+        btnSelectItem.gameObject.SetActive(status); // Button
+        btnSelectItem.GetChild(0).GetComponent<TxtObj>().ShowText(status); // Button text
+
+        txtInvHeader.gameObject.SetActive(status);
+        txtInvHeader.GetComponent<TxtObj>().ShowText(status); // Header inventory
+
+        imgInvNpc.gameObject.SetActive(status);
+        imgInvNpc.GetComponent<Image>().enabled = status; // Activate img
+
+        txtInvNpcName.gameObject.SetActive(status);
+
+        if (status) // Only load image if the image is gonna be shown
+        {
+            imgInvNpc.GetComponent<Image>().sprite = Resources.Load<Sprite>(GetImgPath(InvAndNPCmng.Instance.npcName)); // Loading the img
+            txtInvNpcName.GetComponent<Text>().text = InvAndNPCmng.Instance.npcName; // npc name text
+
+            // PAY ATTENTION HERE IN CASE OF SOME ERRORS, I'M STILL NOT SURE ABOUT THE FOLLOWING LOOP
+            int listLength = InvAndNPCmng.Instance.inventoryList.Count;
+            for (int i = 0; i < slotsInventory.Length; i++)
+            {
+                if (i < listLength)
+                {
+                    slotsInventory[i].GetComponent<InventorySlot>().LoadInfo(i);
+                }
+                else
+                {
+                    slotsInventory[i].GetComponent<InventorySlot>().LetItEmpty();
+                }
+            }
+        }
+        else
+        {
+            txtInvNpcName.GetComponent<Text>().text = " ";
+        }
+
+        panelItens.gameObject.SetActive(status);
+
+        btnCancelSelection.gameObject.SetActive(status);
+        btnCancelSelection.GetChild(0).GetComponent<TxtObj>().ShowText(status);
+    }
+
+
+    // OLD SWITCH UI METHOD
+    /*
     public void ShowUI(UIState uiState, bool command)
     {
         if(command)
@@ -180,8 +286,10 @@ public class UImanager : MonoBehaviour
         }
     }
 
+    */
+
     // Inventory related methods -----------------------------------------------
-    
+
     public void LetConfirmBtnClickable(bool command)
     {
         btnSelectItem.GetComponent<Button>().interactable = command;
@@ -284,7 +392,7 @@ public class UImanager : MonoBehaviour
         bcgImg = GameObject.FindGameObjectWithTag("bcgImg");
         pausePanel1 = GameObject.FindGameObjectWithTag("pausePanel1");
         notificationPanel = GameObject.FindGameObjectWithTag("notificationPanel");
-        intrPanel1 = GameObject.FindGameObjectWithTag("optionsPanel");
+        intr1Parent = GameObject.FindGameObjectWithTag("optionsPanel");
         bcgImgIntr = GameObject.FindGameObjectWithTag("bcgImgIntr");
         talkPanel = GameObject.FindGameObjectWithTag("talkPanel").GetComponent<Transform>();
         inventoryPanel = GameObject.FindGameObjectWithTag("inventoryPanel");
@@ -310,17 +418,19 @@ public class UImanager : MonoBehaviour
         // ***********************
 
         // Interaction PANEL 1 ***
-        btnIntrPanel1[0] = intrPanel1.GetComponent<Transform>().GetChild(0);          // Talk Btn
+        intr1Panel = intr1Parent.GetComponent<Transform>().GetChild(0);
+
+        btnIntrPanel1[0] = intr1Panel.GetComponent<Transform>().GetChild(0);          // Talk Btn
         txtBtnIntrPanel1[0] = btnIntrPanel1[0].GetComponent<Transform>().GetChild(0); // Talk Text
 
-        btnIntrPanel1[1] = intrPanel1.GetComponent<Transform>().GetChild(1);          // Inventory Btn
+        btnIntrPanel1[1] = intr1Panel.GetComponent<Transform>().GetChild(1);          // Inventory Btn
         txtBtnIntrPanel1[1] = btnIntrPanel1[1].GetComponent<Transform>().GetChild(0); // Inventory Text
         
-        btnIntrPanel1[2] = intrPanel1.GetComponent<Transform>().GetChild(2);          // Leave Btn
+        btnIntrPanel1[2] = intr1Panel.GetComponent<Transform>().GetChild(2);          // Leave Btn
         txtBtnIntrPanel1[2] = btnIntrPanel1[2].GetComponent<Transform>().GetChild(0); // Leave Text
 
-        imgNpc = intrPanel1.GetComponent<Transform>().GetChild(3);     // NPC img portrait
-        txtNpcName = intrPanel1.GetComponent<Transform>().GetChild(4); // NPC text name
+        imgNpc = intr1Panel.GetComponent<Transform>().GetChild(3);     // NPC img portrait
+        txtNpcName = intr1Panel.GetComponent<Transform>().GetChild(4); // NPC text name
         // ***********************
 
         // Dialogue elements *****

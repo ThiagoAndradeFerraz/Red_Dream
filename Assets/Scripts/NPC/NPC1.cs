@@ -42,7 +42,7 @@ public abstract class NPC1 : Interactive
 
     public void KillNpc()
     {
-        UImanager.Instance.ShowUI(UIState.TALK, true);
+        //UImanager.Instance.ShowUI(UIState.TALK, true);
         Destroy(gameObject);
     }
 }

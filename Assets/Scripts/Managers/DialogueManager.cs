@@ -84,15 +84,17 @@ public class DialogueManager : MonoBehaviour
             }
             else
             {
-                //Debug.Log("acabou, reiniciando o contador...");
-                
-                UImanager.Instance.ShowUI(UIState.TALK, false); // For some misterious reason, I can only deactivate the talk UI here
-                
-                // PUT A IF-ELSE HERE, CHECKING IF IS DEAD OR ALIVE! IF DEAD, GET OUT OF MENU, IF ALIVE, GO BACK TO INTERACT MENU
-                UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
+                // Atualizando próximo dialogo...
 
-                
+                StateMng.Instance.GoIntr1State(InvAndNPCmng.Instance.npcName, InvAndNPCmng.Instance.descNextDialog);
                 iterateCont = 0;
+
+                //Debug.Log("acabou, reiniciando o contador...");
+
+                //UImanager.Instance.ShowUI(UIState.TALK, false); // For some misterious reason, I can only deactivate the talk UI here
+
+                // PUT A IF-ELSE HERE, CHECKING IF IS DEAD OR ALIVE! IF DEAD, GET OUT OF MENU, IF ALIVE, GO BACK TO INTERACT MENU
+                //UImanager.Instance.ShowUI(UIState.INTERACTMENU1, true);
             }
         }
     }
