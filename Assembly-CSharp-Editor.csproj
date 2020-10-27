@@ -251,12 +251,6 @@
     <Reference Include="UnityEditor">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.0f1\Editor\Data\Managed\UnityEditor.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>Library\ScriptAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-Editor-firstpass">
-      <HintPath>Library\ScriptAssemblies\Assembly-CSharp-Editor-firstpass.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.Graphs">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.0f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
     </Reference>

@@ -4,14 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - bcgImg
-  - pausePanel1
-  - notificationPanel
-  - optionsPanel
-  - bcgImgIntr
-  - talkPanel
-  - inventoryPanel
-  - npcParent
+  - uiGeneral
   layers:
   - Default
   - TransparentFX

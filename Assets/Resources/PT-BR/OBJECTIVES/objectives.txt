@@ -1,0 +1,2 @@
+GO_BATH_ID|Vá tomar banho.
+GO_EAT|Coma alguma coisa.
