@@ -43,8 +43,15 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Movement();
-        MouseMovement(true);
+        if (MngParent.Instance.playerCanWalk)
+        {
+            Movement();
+            MouseMovement(true);
+        }
+        else
+        {
+            MouseMovement(false);
+        }
     }
 
     // -------------------------
@@ -89,27 +96,7 @@ public class Player : MonoBehaviour
 
     private void PressEsc()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if(StateMng.Instance.GetState() == GameState.EXPLORATION || StateMng.Instance.GetState() == GameState.PAUSED) // Pause operation
-            {
-                StateMng.Instance.GoPauseState();
-            }
-            else // Other operations
-            {
-                switch (StateMng.Instance.stateNow)
-                {
-                    case GameState.INTERACTION1:
-                        StateMng.Instance.stateNow = GameState.EXPLORATION;
-                        UImanager.Instance.ChangeUI(GameState.INTERACTION1, false);
-                        break;
-
-                    case GameState.INVENTORY:
-                        StateMng.Instance.GoIntr1State(InvAndNPCmng.Instance.npcName, InvAndNPCmng.Instance.descNextDialog);
-                        break;
-                }
-            }
-        }
+        
     }
 
     private void MouseMovement(bool command)

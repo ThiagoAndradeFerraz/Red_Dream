@@ -60,32 +60,38 @@
     <Compile Include="Assets\Scripts2\Managers\MissionMng.cs" />
     <Compile Include="Assets\Scripts\Managers\UImanager.cs" />
     <Compile Include="Assets\Scripts\Generics\NPCEntry.cs" />
+    <Compile Include="Assets\Scripts2\Objects\IntrGO.cs" />
     <Compile Include="Assets\Scripts\Managers\StateMng.cs" />
     <Compile Include="Assets\Scripts\Generics\TxtObj.cs" />
     <Compile Include="Assets\Scripts2\Managers\LaguageManager.cs" />
     <Compile Include="Assets\Scripts\Generics\LocalizedEntry.cs" />
+    <Compile Include="Assets\Scripts2\Objects\Doors\Elevator.cs" />
     <Compile Include="Assets\Scripts\Abstracts\Interactive.cs" />
     <Compile Include="Assets\Scripts2\Managers\UIManager.cs" />
     <Compile Include="Assets\Scripts\Managers\InvAndNPCmng.cs" />
     <Compile Include="Assets\Scripts\NPC\NPC1.cs" />
+    <Compile Include="Assets\Scripts2\Objects\Gem.cs" />
     <Compile Include="Assets\Scripts\Managers\BtnClickManager.cs" />
     <Compile Include="Assets\Scripts\NPC\Enemies\Enemy.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
     <Compile Include="Assets\Scripts\Generics\InventoryEntry.cs" />
     <Compile Include="Assets\Scripts\NPC\Valquiria.cs" />
+    <Compile Include="Assets\Scripts2\Objects\Doors\Door1.cs" />
     <Compile Include="Assets\Scripts\Generics\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerContrl.cs" />
     <Compile Include="Assets\Scripts\Player\FPPlayer.cs" />
+    <Compile Include="Assets\Scripts2\Objects\Computer.cs" />
     <Compile Include="Assets\Scripts2\Managers\MngParent.cs" />
     <Compile Include="Assets\Scripts\Managers\LangMng.cs" />
     <Compile Include="Assets\Scripts\Generics\DialogueEntry.cs" />
+    <Compile Include="Assets\Scripts2\UI Related\ElevatorButtons.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets\Resources\PT-BR\OBJECTIVES\objectives.txt" />
      <None Include="Assets\Movinarc\PackageUninstaller\README.txt" />
      <None Include="Assets\Resources\PT-BR\DIALOGUE\Intro\Intro1.txt" />
      <None Include="Assets\Resources\PT-BR\DIALOGUE\Valquiria\Valquiria_START.txt" />
-     <None Include="Assets\Resources\PT-BR\MENUS\MENU.txt" />
+     <None Include="Assets\Resources\PT-BR\WORDS\WORDS.txt" />
     <Reference Include="UnityEngine">
       <HintPath>C:\Program Files\Unity\Hub\Editor\2020.1.0f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

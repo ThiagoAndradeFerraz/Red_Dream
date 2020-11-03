@@ -8,6 +8,10 @@ public class MngParent : MonoBehaviour
     // Parent object that holds the other managers in children objects
     // ---------------------------------------------------------------
 
+    // Variables
+    public bool playerCanWalk = true;
+
+
     public Transform uiManager, languageManager, missionManager;
 
     public static MngParent Instance { get; private set; }

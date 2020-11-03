@@ -18,10 +18,8 @@ public class MissionMng : MonoBehaviour
         switch (currentMainMission)
         {
             case 0:
-
                 MngParent.Instance.uiManager.GetComponent<UIManager>().StartDialogue("Intro", "1");
-
-
+                currentMainMission = 1;
                 break;
         }
     }
